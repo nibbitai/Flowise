@@ -1,0 +1,11 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: pebbles-flowise-dr
+  namespace: pebbles
+spec:
+  host: pebbles-flowise-svc
+  trafficPolicy:
+    tls:
+      mode: DISABLE

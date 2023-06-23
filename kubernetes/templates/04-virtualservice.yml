@@ -1,0 +1,27 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: pebbles-flowise-vs
+  namespace: pebbles
+spec:
+  hosts:
+    - flowise.pebbles.$(ENVIRONMENT)nibbit.ai
+  gateways:
+    - pebbles-flowise-gateway
+  http:
+    - route:
+        - destination:
+            host: pebbles-flowise-svc
+            port:
+              number: 3000
+      corsPolicy:
+        allowOrigins:
+          - exact: https://habbit.$(ENVIRONMENT)nibbit.ai
+        allowMethods:
+          - POST
+          - GET
+        allowCredentials: true
+        allowHeaders:
+          - '*'
+        maxAge: '24h'

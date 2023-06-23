@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM --platform=linux/amd64 node:18-alpine
 
 USER root
 
@@ -10,4 +10,4 @@ RUN npm install -g flowise
 
 WORKDIR /data
 
-CMD "flowise"
+CMD ["flowise", "start"]

@@ -1,0 +1,19 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: pebbles-flowise-gateway
+  namespace: pebbles
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 443
+        name: https-pebbles-flowise
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: nibbit-pebbles-flowise-nibbit-ai-tls
+      hosts:
+        - flowise.pebbles.$(ENVIRONMENT)nibbit.ai

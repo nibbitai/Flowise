@@ -1,0 +1,31 @@
+
+apiVersion: apps/v1
+kind: "Deployment"
+metadata:
+  name: "flowise"
+  namespace: pebbles
+  labels:
+    app: "flowise"
+    version: $(version)
+spec:
+  selector:
+    matchLabels:
+      app: "flowise"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "flowise"
+        version: $(version)
+    spec:
+      containers:
+      - name: "flowise"
+        image: nibbitai.azurecr.io/pebbles-flowise:$(version)
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: "Always"
+        resources: 
+          requests:
+            cpu: 1
+            memory: "1Gi"
+        

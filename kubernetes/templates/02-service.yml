@@ -1,0 +1,17 @@
+---
+
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: pebbles-flowise-svc
+  namespace: pebbles
+  labels:
+    app: "flowise"
+    version: $(version)
+spec:
+  ports:
+    - port: 3000
+      name: http
+  selector:
+    app: flowise
+    version: $(version)
