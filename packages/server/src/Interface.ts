@@ -21,6 +21,18 @@ export interface IChatMessage {
     content: string
     chatflowid: string
     createdDate: Date
+    sourceDocuments: string
+}
+
+export interface ITool {
+    id: string
+    name: string
+    description: string
+    color: string
+    schema: string
+    func: string
+    updatedDate: Date
+    createdDate: Date
 }
 
 export interface IComponentNodes {
@@ -142,6 +154,7 @@ export interface IDatabaseExport {
 
 export interface IRunChatflowMessageValue {
     chatflow: IChatFlow
+    chatId: string
     incomingInput: IncomingInput
     componentNodes: IComponentNodes
     endingNodeData?: INodeData
